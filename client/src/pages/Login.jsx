@@ -1,8 +1,9 @@
 import { useState } from "react";
 import API from "../services/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
+  console.log("Login: Component rendering");
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -65,6 +66,10 @@ function Login() {
         <button className="w-full bg-green-500 text-white p-3 rounded">
           Login
         </button>
+
+        <p className="text-gray-400 text-center mt-4">
+          Don't have an account? <Link to="/signup" className="text-green-500 hover:underline">Sign up</Link>
+        </p>
       </form>
     </div>
   );

@@ -6,6 +6,13 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
+const {
+  addExpense,
+  getExpenses,
+  deleteExpense,
+  updateExpense,
+} = require("../controllers/expenseController");
+
 router.post("/", authMiddleware, expenseController.addExpense);
 
 router.get("/", authMiddleware, expenseController.getExpenses);

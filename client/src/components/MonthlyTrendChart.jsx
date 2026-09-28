@@ -1,53 +1,96 @@
 import {
-    ResponsiveContainer,
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    Tooltip,
-    CartesianGrid,
-  } from "recharts";
-  
-  function MonthlyTrendChart({ expenses }) {
-    const chartData = expenses.map((expense) => ({
-      date: new Date(expense.createdAt).toLocaleDateString(
-        "en-IN",
-        {
-          day: "numeric",
-          month: "short",
-        }
-      ),
-      amount: Number(expense.amount),
-    }));
-  
-    return (
-      <div className="bg-white/5 border border-white/10 rounded-3xl p-6 mt-10 backdrop-blur-lg shadow-2xl">
-        <h2 className="text-white text-3xl font-bold mb-8">
-          Monthly Trend
-        </h2>
-  
-        <div style={{ width: "100%", height: 350 }}>
-          <ResponsiveContainer>
-            <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" />
-  
-              <XAxis dataKey="date" />
-  
-              <YAxis />
-  
-              <Tooltip />
-  
-              <Line
-                type="monotone"
-                dataKey="amount"
-                stroke="#06B6D4"
-                strokeWidth={4}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-    );
-  }
-  
-  export default MonthlyTrendChart;
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend
+);
+
+function MonthlyTrendChart({ expenses }) {
+  const monthlyTotals = {};
+
+  expenses.forEach((expense) => {
+    const month = new Date(
+      expense.createdAt
+    ).toLocaleDateString("en-IN", {
+      month: "short",
+    });
+
+    monthlyTotals[month] =
+      (monthlyTotals[month] || 0) +
+      Number(expense.amount);
+  });
+
+  const labels = Object.keys(monthlyTotals);
+
+  const amounts = Object.values(monthlyTotals);
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Monthly Expenses",
+        data: amounts,
+        borderColor: "#06B6D4",
+        backgroundColor: "#06B6D4",
+        tension: 0.4,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+
+    plugins: {
+      legend: {
+        labels: {
+          color: "white",
+        },
+      },
+    },
+
+    scales: {
+      x: {
+        ticks: {
+          color: "white",
+        },
+      },
+
+      y: {
+        ticks: {
+          color: "white",
+        },
+      },
+    },
+  };
+
+
+
+  return (
+    <div className="bg-white/5 border border-white/10 rounded-3xl p-6 mt-10 backdrop-blur-lg shadow-2xl">
+      <h2 className="text-white text-3xl font-bold mb-6">
+        Monthly Trend
+      </h2>
+
+      <Line
+        data={data}
+        options={options}
+      />
+    </div>
+  );
+}
+
+export default MonthlyTrendChart;

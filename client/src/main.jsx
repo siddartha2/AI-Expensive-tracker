@@ -7,15 +7,23 @@ import "./index.css";
 
 import { Toaster } from "react-hot-toast";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Toaster
-        position="top-right"
-        reverseOrder={false}
-      />
+console.log("main.jsx: script executing");
+const rootEl = document.getElementById("root");
+console.log("main.jsx: Root element found:", rootEl);
 
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
-);
+try {
+  ReactDOM.createRoot(rootEl).render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+  console.log("main.jsx: createRoot and render called successfully");
+} catch (e) {
+  console.error("main.jsx: Error during render", e);
+}

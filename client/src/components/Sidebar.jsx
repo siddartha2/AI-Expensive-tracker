@@ -1,40 +1,128 @@
+import { useEffect, useState } from "react";
 import {
-    FaChartPie,
-    FaWallet,
-    FaMoneyBillWave,
-    FaCog,
-  } from "react-icons/fa";
-  
-  function Sidebar() {
-    return (
-      <div className="w-64 h-screen bg-[#111827] border-r border-gray-800 p-6">
-        <h1 className="text-3xl font-bold text-cyan-400 mb-10">
-          FinAI
-        </h1>
-  
-        <div className="space-y-4">
-          <div className="flex items-center gap-3 text-white hover:bg-cyan-500/10 p-3 rounded-xl cursor-pointer transition">
+  FaChartPie,
+  FaWallet,
+  FaMoneyBillWave,
+  FaCog,
+  FaSignOutAlt,
+  FaTimes
+} from "react-icons/fa";
+import { NavLink, useNavigate } from "react-router-dom";
+
+function Sidebar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleToggle = () => setIsOpen((prev) => !prev);
+    window.addEventListener("toggle-sidebar", handleToggle);
+    return () => window.removeEventListener("toggle-sidebar", handleToggle);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  return (
+    <>
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
+
+      {/* Sidebar */}
+      <div className={`fixed inset-y-0 left-0 transform ${isOpen ? "translate-x-0" : "-translate-x-full"} md:relative md:translate-x-0 w-64 bg-[#111827] border-r border-gray-800 p-6 flex flex-col z-50 transition-transform duration-300 ease-in-out`}>
+        <div className="flex justify-between items-center mb-10">
+          <NavLink to="/dashboard" onClick={() => setIsOpen(false)}>
+            <h1 className="text-3xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors">FinAI</h1>
+          </NavLink>
+          <button 
+            className="md:hidden text-gray-400 hover:text-white"
+            onClick={() => setIsOpen(false)}
+          >
+            <FaTimes size={24} />
+          </button>
+        </div>
+
+        <div className="flex-1 space-y-4">
+          <NavLink
+            to="/dashboard"
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 p-3 rounded-xl transition ${
+                isActive
+                  ? "bg-cyan-500/20 text-cyan-400"
+                  : "text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+              }`
+            }
+          >
             <FaChartPie />
             <span>Dashboard</span>
-          </div>
-  
-          <div className="flex items-center gap-3 text-gray-300 hover:bg-cyan-500/10 p-3 rounded-xl cursor-pointer transition">
+          </NavLink>
+
+          <NavLink
+            to="/expenses"
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 p-3 rounded-xl transition ${
+                isActive
+                  ? "bg-cyan-500/20 text-cyan-400"
+                  : "text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+              }`
+            }
+          >
             <FaWallet />
             <span>Expenses</span>
-          </div>
-  
-          <div className="flex items-center gap-3 text-gray-300 hover:bg-cyan-500/10 p-3 rounded-xl cursor-pointer transition">
+          </NavLink>
+
+          <NavLink
+            to="/budgets"
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 p-3 rounded-xl transition ${
+                isActive
+                  ? "bg-cyan-500/20 text-cyan-400"
+                  : "text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+              }`
+            }
+          >
             <FaMoneyBillWave />
             <span>Budgets</span>
-          </div>
-  
-          <div className="flex items-center gap-3 text-gray-300 hover:bg-cyan-500/10 p-3 rounded-xl cursor-pointer transition">
+          </NavLink>
+
+          <NavLink
+            to="/settings"
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 p-3 rounded-xl transition ${
+                isActive
+                  ? "bg-cyan-500/20 text-cyan-400"
+                  : "text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+              }`
+            }
+          >
             <FaCog />
             <span>Settings</span>
-          </div>
+          </NavLink>
+        </div>
+
+        {/* User Section / Logout */}
+        <div className="mt-auto pt-6 border-t border-gray-800">
+          <button 
+            onClick={handleLogout}
+            className="flex w-full items-center gap-3 p-3 rounded-xl text-red-400 hover:bg-red-500/10 transition"
+          >
+            <FaSignOutAlt />
+            <span>Logout</span>
+          </button>
         </div>
       </div>
-    );
-  }
-  
-  export default Sidebar;
+    </>
+  );
+}
+
+export default Sidebar;

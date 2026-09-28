@@ -1,6 +1,6 @@
 import { useState } from "react";
 import API from "../services/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Signup() {
   const navigate = useNavigate();
@@ -9,6 +9,7 @@ function Signup() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -20,6 +21,11 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
 
     try {
       await API.post("/auth/signup", formData);
@@ -64,7 +70,15 @@ function Signup() {
         <input
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Create Password"
+          className="w-full p-3 mb-4 rounded"
+          onChange={handleChange}
+        />
+
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
           className="w-full p-3 mb-4 rounded"
           onChange={handleChange}
         />
@@ -72,6 +86,10 @@ function Signup() {
         <button className="w-full bg-blue-500 text-white p-3 rounded">
           Signup
         </button>
+
+        <p className="text-gray-400 text-center mt-4">
+          Already have an account? <Link to="/" className="text-blue-500 hover:underline">Log in</Link>
+        </p>
       </form>
     </div>
   );

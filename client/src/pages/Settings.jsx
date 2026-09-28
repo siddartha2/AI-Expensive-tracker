@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { FaUser, FaEnvelope, FaMoneyBillAlt, FaSave, FaPen } from "react-icons/fa";
 import API from "../services/api";
 import toast from "react-hot-toast";
+import ThemeToggle from "../components/ThemeToggle";
 
 function Settings() {
   const [profile, setProfile] = useState({ name: "", email: "" });
@@ -72,7 +73,7 @@ function Settings() {
             className="mb-8"
           >
             <h1 className="text-white text-4xl font-bold mb-2">Settings</h1>
-            <p className="text-gray-400">Manage your futuristic account preferences.</p>
+            <p className="text-gray-400">Manage your account preferences.</p>
           </motion.div>
 
           {isLoading ? (
@@ -134,6 +135,16 @@ function Settings() {
                     </div>
                     <p className="text-xs text-gray-500 mt-2 ml-1">* Email modification requires manual override.</p>
                   </div>
+                </div>
+              </div>
+
+              <div className="bg-[#1E293B]/60 border border-emerald-500/20 rounded-2xl p-6 shadow-sm">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h2 className="text-lg text-white font-semibold">Appearance</h2>
+                    <p className="text-gray-400 text-sm mt-1">Choose the theme for your workspace.</p>
+                  </div>
+                  <ThemeToggle />
                 </div>
               </div>
 

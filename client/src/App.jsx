@@ -7,15 +7,17 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Expenses from "./pages/Expenses";
 import Budgets from "./pages/Budgets";
 import Settings from "./pages/Settings";
+import { ThemeProvider } from "./context/ThemeContext";
 
 
 function App() {
   console.log("App: Component rendering");
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
+    <ThemeProvider>
+      <Routes>
+        <Route path="/" element={<Login />} />
 
-      <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
 
       <Route
         path="/dashboard"
@@ -52,7 +54,8 @@ function App() {
           </ProtectedRoute>
         }
       />
-    </Routes>
+      </Routes>
+    </ThemeProvider>
   );
 }
 

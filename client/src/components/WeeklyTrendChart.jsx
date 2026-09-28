@@ -9,6 +9,8 @@ import {
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeStore";
 
 ChartJS.register(
     CategoryScale,
@@ -20,6 +22,9 @@ ChartJS.register(
 );
 
 function WeeklyTrendChart({ expenses }) {
+    const { theme } = useContext(ThemeContext);
+    const chartTextColor = theme === "dark" ? "#d8e7d8" : "#52645a";
+    const chartAccent = theme === "dark" ? "#b9df87" : "#1a5f49";
     const weekDays = {
         Mon: 0,
         Tue: 0,
@@ -49,8 +54,8 @@ function WeeklyTrendChart({ expenses }) {
             {
                 label: "Weekly Spending",
                 data: Object.values(weekDays),
-                borderColor: "#8B5CF6",
-                backgroundColor: "#8B5CF6",
+                borderColor: chartAccent,
+                backgroundColor: chartAccent,
                 tension: 0.4,
             },
         ],
@@ -62,7 +67,7 @@ function WeeklyTrendChart({ expenses }) {
         plugins: {
             legend: {
                 labels: {
-                    color: "white",
+                    color: chartTextColor,
                 },
             },
         },
@@ -70,13 +75,13 @@ function WeeklyTrendChart({ expenses }) {
         scales: {
             x: {
                 ticks: {
-                    color: "white",
+                    color: chartTextColor,
                 },
             },
 
             y: {
                 ticks: {
-                    color: "white",
+                    color: chartTextColor,
                 },
             },
         },

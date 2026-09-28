@@ -2,6 +2,7 @@ import { FaBars } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import API from "../services/api";
+import ThemeToggle from "./ThemeToggle";
 
 function Navbar() {
   const [profile, setProfile] = useState({ name: "User" });
@@ -27,7 +28,7 @@ function Navbar() {
   };
 
   return (
-    <div className="h-20 bg-[#111827]/80 backdrop-blur-lg border-b border-gray-800 flex items-center justify-between px-8">
+    <div className="h-20 bg-[#111827]/80 backdrop-blur-lg border-b border-gray-800 flex items-center justify-between gap-4 px-4 md:px-8">
       <div className="flex items-center gap-4">
         <button 
           onClick={toggleSidebar}
@@ -43,11 +44,14 @@ function Navbar() {
         </div>
       </div>
 
-      <Link to="/settings" className="group">
-        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(6,182,212,0.3)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.6)] group-hover:scale-105 transition-all">
-          {profile.name ? profile.name.charAt(0).toUpperCase() : "U"}
-        </div>
-      </Link>
+      <div className="flex items-center gap-3">
+        <ThemeToggle compact />
+        <Link to="/settings" className="group" aria-label="Open settings">
+          <div className="w-11 h-11 rounded-full bg-linear-to-br from-emerald-600 to-green-800 flex items-center justify-center font-bold text-white shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all">
+            {profile.name ? profile.name.charAt(0).toUpperCase() : "U"}
+          </div>
+        </Link>
+      </div>
     </div>
   );
 }

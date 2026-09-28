@@ -5,8 +5,12 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeStore";
 
 function CategoryPieChart({ expenses }) {
+    const { theme } = useContext(ThemeContext);
+    const isDark = theme === "dark";
     const categoryTotals = {};
 
     expenses.forEach((expense) => {
@@ -26,11 +30,11 @@ function CategoryPieChart({ expenses }) {
     );
 
     const COLORS = [
-        "#06B6D4",
-        "#8B5CF6",
-        "#EC4899",
-        "#10B981",
-        "#F59E0B",
+        "#1A5F49",
+        "#4D8A62",
+        "#83A956",
+        "#2D8878",
+        "#B5A84E",
     ];
 
     return (
@@ -63,7 +67,15 @@ function CategoryPieChart({ expenses }) {
                         ))}
                     </Pie>
 
-                    <Tooltip />
+                    <Tooltip
+                        contentStyle={{
+                            borderColor: isDark ? "#2b493b" : "#dce5df",
+                            borderRadius: 8,
+                            backgroundColor: isDark ? "#17362b" : "#ffffff",
+                            color: isDark ? "#eff6ed" : "#1d2b23",
+                        }}
+                        itemStyle={{ color: isDark ? "#eff6ed" : "#1d2b23" }}
+                    />
                 </PieChart>
             </ResponsiveContainer>
         </div>

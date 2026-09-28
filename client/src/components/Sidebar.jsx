@@ -35,10 +35,10 @@ function Sidebar() {
       )}
 
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 transform ${isOpen ? "translate-x-0" : "-translate-x-full"} md:relative md:translate-x-0 w-64 bg-[#111827] border-r border-gray-800 p-6 flex flex-col z-50 transition-transform duration-300 ease-in-out`}>
+      <div className={`app-sidebar fixed inset-y-0 left-0 transform ${isOpen ? "translate-x-0" : "-translate-x-full"} md:relative md:translate-x-0 w-64 bg-[#111827] border-r border-gray-800 p-6 flex flex-col z-50 transition-transform duration-300 ease-in-out`}>
         <div className="flex justify-between items-center mb-10">
           <NavLink to="/dashboard" onClick={() => setIsOpen(false)}>
-            <h1 className="text-3xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors">FinAI</h1>
+            <h1 className="text-xl font-bold whitespace-nowrap text-emerald-400 hover:text-emerald-300 transition-colors">AI Expense Tracker</h1>
           </NavLink>
           <button 
             className="md:hidden text-gray-400 hover:text-white"
@@ -55,8 +55,8 @@ function Sidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 p-3 rounded-xl transition ${
                 isActive
-                  ? "bg-cyan-500/20 text-cyan-400"
-                  : "text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+                  ? "bg-emerald-500/15 text-emerald-700"
+                  : "text-gray-300 hover:bg-emerald-500/10 hover:text-emerald-600"
               }`
             }
           >
@@ -70,8 +70,8 @@ function Sidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 p-3 rounded-xl transition ${
                 isActive
-                  ? "bg-cyan-500/20 text-cyan-400"
-                  : "text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+                  ? "bg-emerald-500/15 text-emerald-700"
+                  : "text-gray-300 hover:bg-emerald-500/10 hover:text-emerald-600"
               }`
             }
           >
@@ -85,8 +85,8 @@ function Sidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 p-3 rounded-xl transition ${
                 isActive
-                  ? "bg-cyan-500/20 text-cyan-400"
-                  : "text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+                  ? "bg-emerald-500/15 text-emerald-700"
+                  : "text-gray-300 hover:bg-emerald-500/10 hover:text-emerald-600"
               }`
             }
           >
@@ -100,8 +100,8 @@ function Sidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 p-3 rounded-xl transition ${
                 isActive
-                  ? "bg-cyan-500/20 text-cyan-400"
-                  : "text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+                  ? "bg-emerald-500/15 text-emerald-700"
+                  : "text-gray-300 hover:bg-emerald-500/10 hover:text-emerald-600"
               }`
             }
           >

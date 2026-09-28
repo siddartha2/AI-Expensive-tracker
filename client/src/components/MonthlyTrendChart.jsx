@@ -9,6 +9,8 @@ import {
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeStore";
 
 ChartJS.register(
   CategoryScale,
@@ -20,6 +22,9 @@ ChartJS.register(
 );
 
 function MonthlyTrendChart({ expenses }) {
+  const { theme } = useContext(ThemeContext);
+  const chartTextColor = theme === "dark" ? "#d8e7d8" : "#52645a";
+  const chartAccent = theme === "dark" ? "#b9df87" : "#1a5f49";
   const monthlyTotals = {};
 
   expenses.forEach((expense) => {
@@ -44,8 +49,8 @@ function MonthlyTrendChart({ expenses }) {
       {
         label: "Monthly Expenses",
         data: amounts,
-        borderColor: "#06B6D4",
-        backgroundColor: "#06B6D4",
+        borderColor: chartAccent,
+        backgroundColor: chartAccent,
         tension: 0.4,
       },
     ],
@@ -57,7 +62,7 @@ function MonthlyTrendChart({ expenses }) {
     plugins: {
       legend: {
         labels: {
-          color: "white",
+          color: chartTextColor,
         },
       },
     },
@@ -65,13 +70,13 @@ function MonthlyTrendChart({ expenses }) {
     scales: {
       x: {
         ticks: {
-          color: "white",
+          color: chartTextColor,
         },
       },
 
       y: {
         ticks: {
-          color: "white",
+          color: chartTextColor,
         },
       },
     },

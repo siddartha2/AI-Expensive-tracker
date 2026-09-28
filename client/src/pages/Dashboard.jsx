@@ -145,7 +145,7 @@ function Dashboard() {
             className="flex flex-col md:flex-row justify-between md:items-end gap-4 mb-8"
           >
             <div>
-              <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-4xl md:text-5xl font-extrabold mb-2 tracking-tight">
+              <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-lime-300 text-4xl md:text-5xl font-extrabold mb-2 tracking-tight">
                 Neural Dashboard
               </h1>
               <p className="text-cyan-200/70 text-lg">AI-powered financial analytics and insights</p>
@@ -173,25 +173,25 @@ function Dashboard() {
                   title="Total Processed"
                   value={`₹${summary.totalExpenses}`}
                   color="text-white"
-                  gradient="bg-gradient-to-br from-cyan-600 to-blue-800 shadow-[0_0_15px_rgba(6,182,212,0.3)] border border-cyan-400/20"
+                  gradient="bg-gradient-to-br from-emerald-600 to-green-800 shadow-[0_0_15px_rgba(26,95,73,0.24)] border border-emerald-400/20"
                 />
                 <SummaryCard
                   title="Transactions Logged"
                   value={summary.totalTransactions}
                   color="text-white"
-                  gradient="bg-gradient-to-br from-purple-600 to-indigo-800 shadow-[0_0_15px_rgba(168,85,247,0.3)] border border-purple-400/20"
+                  gradient="bg-gradient-to-br from-green-700 to-emerald-900 shadow-[0_0_15px_rgba(26,95,73,0.2)] border border-emerald-400/20"
                 />
                 <SummaryCard
                   title="Average Vector"
                   value={`₹${averageExpense}`}
                   color="text-white"
-                  gradient="bg-gradient-to-br from-emerald-600 to-teal-800 shadow-[0_0_15px_rgba(16,185,129,0.3)] border border-emerald-400/20"
+                  gradient="bg-gradient-to-br from-teal-600 to-green-800 shadow-[0_0_15px_rgba(26,95,73,0.2)] border border-emerald-400/20"
                 />
                 <SummaryCard
                   title="Peak Expenditure"
                   value={highestExpense ? `₹${highestExpense.amount}` : "₹0"}
                   color="text-white"
-                  gradient="bg-gradient-to-br from-rose-600 to-red-800 shadow-[0_0_15px_rgba(225,29,72,0.3)] border border-rose-400/20"
+                  gradient="bg-gradient-to-br from-emerald-700 to-teal-900 shadow-[0_0_15px_rgba(26,95,73,0.2)] border border-emerald-400/20"
                 />
               </div>
 

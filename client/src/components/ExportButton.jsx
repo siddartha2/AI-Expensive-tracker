@@ -24,7 +24,7 @@ function ExportButton({ expenses }) {
     return (
         <button
             onClick={exportCSV}
-            className="bg-cyan-600 hover:bg-cyan-700 text-white px-5 py-3 rounded-xl"
+            className="bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-3 rounded-xl"
         >
             Export Report
         </button>

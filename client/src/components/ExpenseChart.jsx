@@ -34,11 +34,11 @@ import {
           data: Object.values(categoryMap),
   
           backgroundColor: [
-            "#06B6D4",
-            "#8B5CF6",
-            "#10B981",
-            "#F59E0B",
-            "#EF4444",
+            "#1A5F49",
+            "#4D8A62",
+            "#83A956",
+            "#2D8878",
+            "#B5A84E",
           ],
   
           borderWidth: 2,

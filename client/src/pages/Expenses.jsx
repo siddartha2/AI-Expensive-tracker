@@ -118,25 +118,25 @@ function Expenses() {
               title="Total Expenses"
               value={`₹${totalExpenses}`}
               color="text-white"
-              gradient="bg-gradient-to-br from-cyan-500 to-blue-700"
+              gradient="bg-gradient-to-br from-emerald-600 to-green-800"
             />
             <SummaryCard
               title="This Month"
               value={`₹${thisMonthTotal}`}
               color="text-white"
-              gradient="bg-gradient-to-br from-purple-500 to-indigo-700"
+              gradient="bg-gradient-to-br from-green-700 to-emerald-900"
             />
             <SummaryCard
               title="Average Expense"
               value={`₹${averageExpense}`}
               color="text-white"
-              gradient="bg-gradient-to-br from-emerald-500 to-teal-700"
+              gradient="bg-gradient-to-br from-teal-600 to-green-800"
             />
             <SummaryCard
               title="Highest Expense"
               value={`₹${highestExpense}`}
               color="text-white"
-              gradient="bg-gradient-to-br from-pink-500 to-rose-700"
+              gradient="bg-gradient-to-br from-emerald-700 to-teal-900"
             />
           </motion.div>
 
@@ -203,4 +203,4 @@ function Expenses() {
   );
 }
 
-export default Expenses;
+export default Expenses;
